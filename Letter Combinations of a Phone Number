@@ -1,0 +1,34 @@
+class Solution {
+public:
+    void rec(string digits,map<int,string> phone,string& ans,vector<string>& result,int count){
+        if((count)==digits.size()){ 
+            if(ans!="")
+            result.push_back(ans);
+            return;
+        }
+        int a=int(digits[count]-'0');
+        for(int i=0;i<phone[a].size();i++){
+            ans.push_back(phone[a][i]);
+            rec(digits,phone,ans,result,count+1);
+            ans.pop_back();
+        }
+    }
+    vector<string> letterCombinations(string digits) {
+        map<int,string> phone{
+            {2,"abc"},
+            {3,"def"},
+            {4,"ghi"},
+            {5,"jkl"},
+            {6,"mno"},
+            {7,"pqrs"},
+            {8,"tuv"},
+            {9,"wxyz"}
+        };
+        vector<string> result;
+        string ans;
+        rec(digits,phone,ans,result,0);
+        return result;
+        
+        
+    }
+};
